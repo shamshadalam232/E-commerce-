@@ -15,16 +15,15 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type:String,
-        enum: ['user', 'admin']
+        enum: ["user", "admin"]
     },
     password: {
         type:String,
         require: true
     },
     }, {
-        timestamps  
+        timestamps:true  
     })
-
 
     const userModel = mongoose.model('user', UserSchema)
 
