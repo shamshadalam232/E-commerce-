@@ -1,0 +1,69 @@
+import React from 'react'
+import loginPage from '../assets/loginPage.png'
+import { Handbag } from 'lucide-react'
+
+export default function RegisterPage() {
+  return (
+    
+    <>
+     <div className='flex w-full min-h-screen'>
+      <div className='rounded-r-2xl w-full min-h-screen flex justify-center bg-linear-to-r from-gray-100 via-orange-300 to-gray-500'>
+        <img className='object-cover p-3' src={loginPage} />
+      </div>
+      <div className="rounded-2xl w-full min-h-screen relative">
+
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2">
+
+    <div className="flex flex-col items-center">
+      
+      <Handbag
+        size={60}
+        color="#d82222"
+        strokeWidth={2.25}
+      />
+      <h1 className='text-3xl font-bold'>Sign up</h1>
+      <p className='text-xl mt-3 mb-3'>Create your account</p>
+      
+      <form>
+
+        <label className='font-bold'>Name</label>
+      <input
+        type="text"
+        placeholder="Enter your name..."
+        className="border p-3 mt-2 w-full rounded-lg"
+      />
+
+        <label className='font-bold'>Email</label>
+      <input
+        type="text"
+        placeholder="Enter your email..."
+        className="border p-3 mt-2 w-full rounded-lg"
+      />
+
+      <label className='font-bold'>Password</label>
+      <input
+        type="password"
+        placeholder="Enter your password..."
+        className="border p-3 mt-1 w-full rounded-lg"
+      />
+
+      <button className="bg-red-600 text-white px-8 py-3 mt-4 rounded-lg">
+        Create
+      </button>
+      </form>
+
+      
+
+    </div>
+
+  </div>
+
+</div>
+     </div>
+    </>
+    
+  )
+}
+
+
+// mobile par second div first div par laana hai 
