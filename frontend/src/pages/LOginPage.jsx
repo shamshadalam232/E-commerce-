@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import loginPage from '../assets/loginPage.png'
 import { Handbag } from 'lucide-react'
+import api from '../api/Axios'
+import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 export default function LOginPage() {
+
+  const[loginData, setLoginData] = useState({
+    email:'',
+    password:''
+  })
+
+  const navigation = useNavigate()
+
+  const handleChange = (e) => {
+   setLoginData({
+    ...loginData,
+    [e.target.name]:e.target.value
+   })
+  }
+
+  console.log(loginData)
+
+  const handleSubmit = async (e) => {
+   e.preventDefault()
+   const res = await api.post('/users/login', loginData)
+   setLoginData(res.data)
+   toast.success('Welcome back!');
+   navigation('/')
+   console.log(res)
+  }
+
+
   return (
     <>
      <div className='flex w-full min-h-screen'>
@@ -23,9 +53,11 @@ export default function LOginPage() {
       <h1 className='text-3xl font-bold'>Login</h1>
       <p className='text-xl mt-3 mb-3'>Login to continue to your account</p>
       
-      <form>
+      <form onSubmit={handleSubmit}>
         <label className='font-bold'>Email</label>
       <input
+      onChange={handleChange}
+        name='email'
         type="text"
         placeholder="Enter your email..."
         className="border p-3 mt-2 w-full rounded-lg"
@@ -33,6 +65,8 @@ export default function LOginPage() {
 
       <label className='font-bold'>Password</label>
       <input
+      onChange={handleChange}
+      name='password'
         type="password"
         placeholder="Enter your password..."
         className="border p-3 mt-1 w-full rounded-lg"

@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import loginPage from '../assets/loginPage.png'
 import { Handbag } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import api from '../api/Axios'
 
 export default function RegisterPage() {
+
+  const [registerData, setRegisterData] = useState({
+     name:'',
+     email:'',
+     password:''
+  })
+
+  const navigation = useNavigate()
+
+  const handleChange = (e) => {
+   setRegisterData({
+    ...registerData,
+    [e.target.name]: e.target.value
+   })
+  }
+
+  console.log(registerData)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+     const res = await api.post('/users/register', registerData)
+     setRegisterData(res.data)
+     toast.success('Your account created successfully!');
+     console.log(res.data)
+     navigation('/')
+  }
+
   return (
     
     <>
@@ -24,10 +53,12 @@ export default function RegisterPage() {
       <h1 className='text-3xl font-bold'>Sign up</h1>
       <p className='text-xl mt-3 mb-3'>Create your account</p>
       
-      <form>
+      <form onSubmit={handleSubmit}>
 
         <label className='font-bold'>Name</label>
       <input
+      onChange={handleChange}
+      name='name'
         type="text"
         placeholder="Enter your name..."
         className="border p-3 mt-2 w-full rounded-lg"
@@ -35,6 +66,8 @@ export default function RegisterPage() {
 
         <label className='font-bold'>Email</label>
       <input
+      onChange={handleChange}
+      name='email'
         type="text"
         placeholder="Enter your email..."
         className="border p-3 mt-2 w-full rounded-lg"
@@ -42,6 +75,8 @@ export default function RegisterPage() {
 
       <label className='font-bold'>Password</label>
       <input
+      onChange={handleChange}
+      name='password'
         type="password"
         placeholder="Enter your password..."
         className="border p-3 mt-1 w-full rounded-lg"

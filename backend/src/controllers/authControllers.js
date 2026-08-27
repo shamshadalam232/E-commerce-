@@ -84,4 +84,22 @@ const logout = async (req, res) => {
    return res.status(200).json({message:'you are logout successfully'})
 }
 
-module.exports = {register, login, logout}
+
+const getUser = async (req, res) => {
+
+  const token = req.cookies.token
+
+  const decoded = jwt.verify(token, process.env.SECRET_KEY)
+
+  const userId = decoded.id
+
+  const findUser = await userModel.findById(userId)
+
+  if(!findUser){
+    return res.status(404).json({message: 'user not register'})
+  }
+
+  return res.status(201).json({message:'here your data', findUser})
+}
+
+module.exports = {register, login, logout, getUser}
