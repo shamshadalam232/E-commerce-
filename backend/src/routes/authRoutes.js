@@ -7,7 +7,7 @@ const auth = express.Router()
 //user login logout and register
 auth.post('/register', register)
 auth.post('/login', login)
-auth.post('/logout', logout)
+auth.post('/logout',authMiddleware, logout)
 
 //user getUser patchUser
 

@@ -27,6 +27,7 @@ export default function LOginPage() {
    e.preventDefault()
    const res = await api.post('/users/login', loginData)
    setLoginData(res.data)
+   window.dispatchEvent(new Event('authChange'))
    toast.success('Welcome back!');
    navigation('/')
    console.log(res)

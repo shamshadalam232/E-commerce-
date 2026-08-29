@@ -1,36 +1,77 @@
 import { Truck } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import api from '../api/Axios'
-import { useParams } from 'react-router-dom';
+import LOGO from '../assets/logo3.png'
+import { useNavigate} from 'react-router-dom';
 
 
 export default function Navbar() {
 
   const [useData, setUserData] =useState(null)
 
-  useEffect(() => {
-    fetchData()
-  },[])
+  const navigation = useNavigate()
+
 
   const fetchData = async () =>{
     const data = await api.get('/users/your')
-    setUserData(data.data)
-    console.log(data.data)
+    setUserData(data.data.findUser)
+    console.log(data.data.findUser)
   }
+
+  const handleLogout = async () => {
+     const logout = api.post('/users/logout')
+     setUserData(null)
+     navigation('/')
+  }
+
+  useEffect(() => {
+    fetchData() 
+     window.addEventListener('authChange', fetchData)
+
+  return () => {
+    window.removeEventListener('authChange', fetchData)
+  }
+  }, [])
 
   
   return (
     <>
     <div>
-    {useData ? (
-        
-      <nav className='flex h-15 shadow text-xl items-center justify-between font-bold'>
+    {!useData ? (
+         <div>
+        <nav className='flex h-15 shadow text-xl items-center justify-between font-bold bg-amber-200'>
         <div className='p-4 flex items-center gap-1.5'>
-          <Truck size={21} strokeWidth={1.75} className='mt-1'/>
-          <h1 className='text-xl items-center'>Free delivery on order over $50</h1>
+          
+          <div className='text-xl items-center h-20 w-35'>
+            <img src={LOGO} />
+          </div>
         </div>
-        <div className='flex p-4 gap-7'>
+        <div className='flex p-4 gap-7 '>
           <h1>Help & Support</h1>
+          <h1 onClick={() => {
+            navigation('/login')
+          }} className='cursor-pointer'>Login</h1>
+          <h1 onClick={() => {
+            navigation('/register')
+          }} className='cursor-pointer' >Register</h1>
+        </div>
+        </nav>
+      
+       </div>
+      
+    
+    ) : (
+      <nav className='flex h-15 shadow text-xl items-center justify-between font-bold bg-yellow-200'>
+        <div className='p-4 flex items-center gap-1.5'>
+          
+          <div className='text-xl items-center h-20 w-35'>
+            <img src={LOGO} />
+          </div>
+        </div>
+        <div className='flex p-4 gap-7 items-center'>
+          <h1 onClick={() => {
+            navigation('/')
+          }}>Home</h1>
           <h1>Track Order</h1>
           <select>
             <option>English</option>
@@ -42,15 +83,19 @@ export default function Navbar() {
             <option>RUPEE</option>
             <option>TAKA</option>
           </select>
+          
+          
+             <button className='bg-blue-800 text-white rounded-2xl p-1 pl-3 pr-3 active:scale-95 transition-transform' onClick={handleLogout}>LOGOUT</button>
+             <button className='bg-blue-800 text-white rounded-2xl p-1 pl-3 pr-3 active:scale-95 transition-transform'>My Profile</button>
+          
+          
         </div>
         </nav>
       
-    
-    ) : (
-       <div>h</div>
     )}
     </div>
     
     </>
   )
 }         
+
