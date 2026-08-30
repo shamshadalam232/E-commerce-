@@ -1,4 +1,4 @@
-import { Truck } from 'lucide-react'
+import { Search, Truck } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import api from '../api/Axios'
 import LOGO from '../assets/logo3.png'
@@ -69,6 +69,17 @@ export default function Navbar() {
           </div>
         </div>
         <div className='flex p-4 gap-7 items-center'>
+          <div className="relative">
+  <input
+    type="text"
+    className="w-80 bg-white p-2 pr-10"
+    placeholder="Search your product..."
+  />
+
+  <button className="absolute right-1 top-1/2 -translate-y-1/2 bg-[#f5f5f5] p-2 rounded-lg">
+    <Search size={18} />
+  </button>
+</div>
           <h1 onClick={() => {
             navigation('/')
           }}>Home</h1>
