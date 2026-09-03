@@ -1,5 +1,5 @@
 const express = require('express')
-const { register, login, logout, getUser } = require('../controllers/authControllers')
+const { register, login, logout, getUser, editProfileUser } = require('../controllers/authControllers')
 const authMiddleware = require('../middleware/auth.middleware')
 
 const auth = express.Router()
@@ -11,7 +11,8 @@ auth.post('/logout',authMiddleware, logout)
 
 //user getUser patchUser
 
-auth.get('/your',authMiddleware, getUser)
+auth.get('/me/:id',authMiddleware, getUser)
+auth.patch('/profile', authMiddleware, editProfileUser) 
 
 
 module.exports = auth

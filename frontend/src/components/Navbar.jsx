@@ -13,7 +13,7 @@ export default function Navbar() {
 
 
   const fetchData = async () =>{
-    const data = await api.get('/users/your')
+    const data = await api.get('/users/me')
     setUserData(data.data.findUser)
     console.log(data.data.findUser)
   }

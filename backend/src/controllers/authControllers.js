@@ -102,4 +102,20 @@ const getUser = async (req, res) => {
   return res.status(201).json({message:'here your data', findUser})
 }
 
-module.exports = {register, login, logout, getUser}
+const editProfileUser = async(req, res) => {
+
+  const user = req.user
+     
+  const {phone, role} = req.body
+
+  const findUserAndUpdate = await userModel.findOneAndUpdate({user} , req.body, {new:true});
+
+  if(!findUserAndUpdate){
+    return res.status(403).json({message:'Your Data Not Found!'})
+  }
+
+  return res.status(200).json({message:'your Profile updated', findUserAndUpdate})
+
+}
+
+module.exports = {register, login, logout, getUser, editProfileUser}
