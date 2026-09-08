@@ -35,8 +35,8 @@ const register = async (req, res) => {
 
   res.cookie('token', token,{
     httpOnly:true,
-    secure:true,
-    sameSite:'none'
+    secure:false,
+    sameSite:'lax'
   })
 
   return res.status(201).json({message:'welcome! Your account created successfully', createUser})
@@ -68,7 +68,7 @@ const login = async (req, res) => {
   res.cookie('token', token,{
      httpOnly:true,
      secure:true,
-     sameSite:'none'
+     sameSite:'lax'
   })
 
   return res.status(201).json({message:"Welcome back", check})
@@ -76,12 +76,12 @@ const login = async (req, res) => {
 }
 
 const logout = async (req, res) => {
-   res.clearCookie("token", {
-    httpOnly:true,
-    secure:true,
-    sameSite:'none'
-   })
-   return res.status(200).json({message:'you are logout successfully'})
+
+  res.clearCookie("token")
+
+  return res.status(200).json({
+    message: "logout successful"
+  })
 }
 
 
@@ -89,17 +89,28 @@ const getUser = async (req, res) => {
 
   const token = req.cookies.token
 
+  if (!token) {
+    return res.status(401).json({
+      message: "Unauthorized"
+    })
+  }
+
   const decoded = jwt.verify(token, process.env.SECRET_KEY)
 
   const userId = decoded.id
 
   const findUser = await userModel.findById(userId)
 
-  if(!findUser){
-    return res.status(404).json({message: 'user not register'})
+  if (!findUser) {
+    return res.status(404).json({
+      message: "user not register"
+    })
   }
 
-  return res.status(201).json({message:'here your data', findUser})
+  return res.status(200).json({
+    message: "here your data",
+    findUser
+  })
 }
 
 const editProfileUser = async(req, res) => {

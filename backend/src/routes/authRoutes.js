@@ -11,7 +11,7 @@ auth.post('/logout',authMiddleware, logout)
 
 //user getUser patchUser
 
-auth.get('/me/:id',authMiddleware, getUser)
+auth.get('/me',authMiddleware, getUser)
 auth.patch('/profile', authMiddleware, editProfileUser) 
 
 

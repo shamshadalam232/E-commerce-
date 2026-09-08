@@ -19,10 +19,16 @@ export default function Navbar() {
   }
 
   const handleLogout = async () => {
-     const logout = api.post('/users/logout')
-     setUserData(null)
-     navigation('/')
+  try {
+    await api.post('/users/logout')
+
+    setUserData(null)
+
+    navigation('/')
+  } catch (error) {
+    console.log(error)
   }
+}
 
   useEffect(() => {
     fetchData() 

@@ -12,7 +12,7 @@ export default function HomePage() {
       <div>
         <ProductCard />
       </div>
-      <div>
+      <div >
         <ProductFilter />
       </div>
       <div></div>
