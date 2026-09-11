@@ -4,6 +4,7 @@ import LOginPage from '../pages/LOginPage'
 import RegisterPage from '../pages/RegisterPage'
 import HomePage from '../pages/HomePage'
 import Navbar from '../components/Navbar'
+import ProfilePage from '../pages/ProfilePage'
 
 
 export default function RoutesAll() {
@@ -14,7 +15,7 @@ export default function RoutesAll() {
       <Route path='/login' element={<LOginPage />} />
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/' element={<HomePage />} />
-      
+      <Route path='/profile' element={<ProfilePage />} />
     </Routes>
     </>
   )

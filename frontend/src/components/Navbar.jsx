@@ -103,7 +103,7 @@ export default function Navbar() {
           
           
              <button className='bg-blue-800 text-white rounded-2xl p-1 pl-3 pr-3 active:scale-95 transition-transform' onClick={handleLogout}>LOGOUT</button>
-             <button className='bg-blue-800 text-white rounded-2xl p-1 pl-3 pr-3 active:scale-95 transition-transform'>My Profile</button>
+             <button className='bg-blue-800 text-white rounded-2xl p-1 pl-3 pr-3 active:scale-95 transition-transform' onClick={() => {navigation('/profile')}}>My Profile</button>
           
           
         </div>
