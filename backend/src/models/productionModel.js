@@ -33,6 +33,11 @@ const ProductSchema = new mongoose.Schema({
     numReviews:{
         type:Number
     },
+     features: [
+        {
+            type: String
+        }
+    ],
     isActive:{
         type:Boolean,
         default:true

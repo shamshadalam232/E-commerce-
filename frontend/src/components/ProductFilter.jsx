@@ -1,8 +1,33 @@
 import { Camera, MoveRight, Package2, ShoppingCart, Smartphone } from 'lucide-react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Iphone from '../assets/shabreen-removebg-preview.png'
+import api from '../api/Axios'
 
 export default function ProductFilter() {
+
+  const [product, setProduct] = useState([])
+
+  const fetchJob = async () => {
+    const job = await api.get('/users/public/product')
+    console.log(job.data.getProduct)
+    setProduct(job.data.getProduct)
+  }
+
+  // console.log(product.getProduct.price)
+
+  // const price = product.price
+
+  // console.log(price)
+
+  // let x 
+  // console.log(x)
+
+
+
+  useEffect(() => {
+    fetchJob()
+  },[])
+
   return (
     <>
       <div className='flex justify-between items-center pl-5 pr-5'>
@@ -10,16 +35,19 @@ export default function ProductFilter() {
           <h1 className='text-3xl font-bold'>Best Sellers</h1>
         </div>
         <div>
-          <MoveRight size={44} />
+          <MoveRight size={44}/>
         </div>
       </div>
 
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-    <div className="p-3 sm:p-5">
-  <div className="w-full max-w-sm mx-auto rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+     
+    
+       { product.map((product) => (
+  <div key={product._id} className="w-full max-w-sm mx-auto rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
 
-    {/* Product Image */}
+   
+     {/* Product Image */}
     <div className="relative bg-gray-50 p-4 sm:p-6 flex justify-center">
 
       {/* Discount Badge */}
@@ -44,7 +72,7 @@ export default function ProductFilter() {
 
       {/* Name + Brand */}
       <h1 className="text-lg sm:text-xl font-bold text-gray-900">
-        iPhone 14
+        {product?.name}
       </h1>
 
       <p className="text-sm text-gray-500 mt-1">
@@ -148,8 +176,10 @@ export default function ProductFilter() {
         Buy Now
       </button>
     </div>
+   
   </div>
-</div>
+  )) }
+
 </div>
     </>
   )
