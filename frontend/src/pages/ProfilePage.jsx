@@ -9,7 +9,7 @@ export default function ProfilePage() {
 
   const [activeTab, setActiveTab] = useState("orders");
 
-  const [adminActiveTab, setAdminActiveTab] = useState('productCreate')
+  const [adminActiveTab, setAdminActiveTab] = useState('dashBoard')
 
   const [user, setUser] = useState(null)
 

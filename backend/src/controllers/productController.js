@@ -2,6 +2,8 @@ const productModel = require("../models/productionModel")
 
 const createProduct = async(req, res) => {
 
+    console.log("REQ BODY:", req.body)
+
     const {name, description, price, discountPrice, images, category, brand, stock, rating, numReviews, features} = req.body
 
     const createProduct1 = await productModel.create({

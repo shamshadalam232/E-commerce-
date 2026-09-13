@@ -1,118 +1,264 @@
-import { Search, Truck } from 'lucide-react'
+
+import { Search, User, LogOut, Package, CircleHelp } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import api from '../api/Axios'
 import LOGO from '../assets/logo3.png'
-import { useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
 
-  const [useData, setUserData] =useState(null)
+  const [useData, setUserData] = useState(null)
 
   const navigation = useNavigate()
 
-
-  const fetchData = async () =>{
-    const data = await api.get('/users/me')
-    setUserData(data.data.findUser)
-    console.log(data.data.findUser)
+  const fetchData = async () => {
+    try {
+      const data = await api.get('/users/me')
+      setUserData(data.data.findUser)
+    } catch (error) {
+      setUserData(null)
+    }
   }
 
   const handleLogout = async () => {
-  try {
-    await api.post('/users/logout')
-
-    setUserData(null)
-
-    navigation('/')
-  } catch (error) {
-    console.log(error)
+    try {
+      await api.post('/users/logout')
+      setUserData(null)
+      navigation('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
-}
 
   useEffect(() => {
-    fetchData() 
-     window.addEventListener('authChange', fetchData)
+    fetchData()
 
-  return () => {
-    window.removeEventListener('authChange', fetchData)
-  }
+    window.addEventListener('authChange', fetchData)
+
+    return () => {
+      window.removeEventListener('authChange', fetchData)
+    }
   }, [])
 
-  
   return (
-    <>
-    <div>
-    {!useData ? (
-         <div>
-        <nav className='flex h-15 shadow text-xl items-center justify-between font-bold bg-amber-200'>
-        <div className='p-4 flex items-center gap-1.5'>
-          
-          <div className='text-xl items-center h-20 w-35'>
-            <img src={LOGO} />
-          </div>
-        </div>
-        <div className='flex p-4 gap-7 '>
-          <h1>Help & Support</h1>
-          <h1 onClick={() => {
-            navigation('/login')
-          }} className='cursor-pointer'>Login</h1>
-          <h1 onClick={() => {
-            navigation('/register')
-          }} className='cursor-pointer' >Register</h1>
-        </div>
-        </nav>
-      
-       </div>
-      
-    
-    ) : (
-      <nav className='flex h-15 shadow text-xl items-center justify-between font-bold bg-yellow-200'>
-        <div className='p-4 flex items-center gap-1.5'>
-          
-          <div className='text-xl items-center h-20 w-35'>
-            <img src={LOGO} />
-          </div>
-        </div>
-        <div className='flex p-4 gap-7 items-center'>
-          <div className="relative">
-  <input
-    type="text"
-    className="w-80 bg-white p-2 pr-10"
-    placeholder="Search your product..."
-  />
+    <header className="w-full bg-white shadow-sm border-b border-gray-200">
 
-  <button className="absolute right-1 top-1/2 -translate-y-1/2 bg-[#f5f5f5] p-2 rounded-lg">
-    <Search size={18} />
-  </button>
-</div>
-          <h1 onClick={() => {
-            navigation('/')
-          }}>Home</h1>
-          <h1>Track Order</h1>
-          <select>
-            <option>English</option>
-            <option>Hindi</option>
-            <option>Maithli</option>
-          </select>
-          <select>
-            <option>USD</option>
-            <option>RUPEE</option>
-            <option>TAKA</option>
-          </select>
-          
-          
-             <button className='bg-blue-800 text-white rounded-2xl p-1 pl-3 pr-3 active:scale-95 transition-transform' onClick={handleLogout}>LOGOUT</button>
-             <button className='bg-blue-800 text-white rounded-2xl p-1 pl-3 pr-3 active:scale-95 transition-transform' onClick={() => {navigation('/profile')}}>My Profile</button>
-          
-          
-        </div>
+      {!useData ? (
+
+        // =========================
+        // GUEST NAVBAR
+        // =========================
+
+        <nav className="h-20 max-w-7xl mx-auto px-6 flex items-center justify-between">
+
+          {/* LOGO */}
+          <div
+            className="cursor-pointer"
+            onClick={() => navigation('/')}
+          >
+            <img
+              src={LOGO}
+              alt="Logo"
+              className="w-32 h-auto object-contain"
+            />
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className="flex items-center gap-8 text-sm font-medium text-gray-700">
+
+            <div className="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition">
+              <CircleHelp size={18} />
+              <span>Help & Support</span>
+            </div>
+
+            <button
+              onClick={() => navigation('/login')}
+              className="hover:text-blue-600 transition"
+            >
+              Login
+            </button>
+
+            <button
+              onClick={() => navigation('/register')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition"
+            >
+              Register
+            </button>
+
+          </div>
+
         </nav>
-      
-    )}
-    </div>
-    
-    </>
+
+      ) : (
+
+        // =========================
+        // LOGGED IN NAVBAR
+        // =========================
+
+        <nav className="h-20 max-w-7xl mx-auto px-6 flex items-center gap-8">
+
+          {/* LOGO */}
+          <div
+            className="shrink-0 cursor-pointer"
+            onClick={() => navigation('/')}
+          >
+            <img
+              src={LOGO}
+              alt="Logo"
+              className="w-32 h-auto object-contain"
+            />
+          </div>
+
+
+          {/* SEARCH */}
+          <div className="flex-1 max-w-xl">
+
+            <div className="relative">
+
+              <input
+                type="text"
+                placeholder="Search for products..."
+                className="
+                  w-full
+                  h-11
+                  bg-gray-50
+                  border
+                  border-gray-300
+                  rounded-lg
+                  pl-4
+                  pr-12
+                  text-sm
+                  outline-none
+                  focus:border-blue-500
+                  focus:ring-2
+                  focus:ring-blue-100
+                  transition
+                "
+              />
+
+              <button
+                className="
+                  absolute
+                  right-1
+                  top-1
+                  h-9
+                  w-10
+                  flex
+                  items-center
+                  justify-center
+                  bg-blue-600
+                  hover:bg-blue-700
+                  text-white
+                  rounded-md
+                  transition
+                "
+              >
+                <Search size={18} />
+              </button>
+
+            </div>
+
+          </div>
+
+
+          {/* NAVIGATION */}
+          <div className="flex items-center gap-6 text-sm font-medium text-gray-700">
+
+            <button
+              onClick={() => navigation('/')}
+              className="hover:text-blue-600 transition"
+            >
+              Home
+            </button>
+
+            <button className="flex items-center gap-1.5 hover:text-blue-600 transition">
+              <Package size={18} />
+              Track Order
+            </button>
+
+
+            {/* LANGUAGE */}
+            <select
+              className="
+                bg-transparent
+                outline-none
+                cursor-pointer
+                text-sm
+                text-gray-700
+              "
+            >
+              <option>English</option>
+              <option>Hindi</option>
+              <option>Maithli</option>
+            </select>
+
+
+            {/* CURRENCY */}
+            <select
+              className="
+                bg-transparent
+                outline-none
+                cursor-pointer
+                text-sm
+                text-gray-700
+              "
+            >
+              <option>USD</option>
+              <option>RUPEE</option>
+              <option>TAKA</option>
+            </select>
+
+
+            {/* PROFILE */}
+            <button
+              onClick={() => navigation('/profile')}
+              className="
+                flex
+                items-center
+                gap-2
+                px-3
+                py-2
+                rounded-lg
+                hover:bg-gray-100
+                transition
+              "
+            >
+              <User size={18} />
+
+              <span>Profile</span>
+            </button>
+
+
+            {/* LOGOUT */}
+            <button
+              onClick={handleLogout}
+              className="
+                flex
+                items-center
+                gap-2
+                bg-gray-900
+                hover:bg-red-600
+                text-white
+                px-4
+                py-2.5
+                rounded-lg
+                text-sm
+                transition
+                active:scale-95
+              "
+            >
+              <LogOut size={17} />
+
+              <span>Logout</span>
+            </button>
+
+          </div>
+
+        </nav>
+
+      )}
+
+    </header>
   )
-}         
+}
 

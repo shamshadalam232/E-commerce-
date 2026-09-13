@@ -1,3 +1,4 @@
+import { MoveRight } from 'lucide-react'
 import React from 'react'
 
 export default function DashBoard() {
@@ -44,9 +45,42 @@ export default function DashBoard() {
     <div className='bg-amber-100 text-amber-600 p-4 rounded-xl text-2xl'>⏳</div>
   </div>
   </div>
- 
-
 </div>
+
+<div className='bg-white shadow'>
+  <div className='flex justify-between items-center p-3  border-b-2'>
+    <div >
+    <p className='font-bold'>Recent Orders</p>
+    <p className='text-gray-500'>Latest customer orders</p>
+    </div>
+    <div className='flex gap-2 text-orange-500 items-center cursor-pointer'>
+       <p>View All </p>
+       <MoveRight />
+    </div>
+  </div>
+
+
+  <table className="w-full shadow">
+  <thead>
+    <tr className="bg-gray-200 text-sm text-gray-700">
+      <td className="p-3">Order ID</td>
+      <td className="p-3">Customer</td>
+      <td className="p-3">Amount</td>
+      <td className="p-3">Status</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr className="bg-white border-b">
+      <td className="p-3">0123</td>
+      <td className="p-3">Rahul</td>
+      <td className="p-3">₹2,499</td>
+      <td className="p-3 text-blue-500">Delivered</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 </div>
 
 
