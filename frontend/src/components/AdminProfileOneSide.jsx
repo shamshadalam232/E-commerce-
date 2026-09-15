@@ -46,7 +46,7 @@ export default function AdminProfileOneSide({adminActiveTab, setAdminActiveTab})
 
 
     {/* Category */}
-    <div onClick={() => setAdminActiveTab("category")} className="flex items-center gap-3 px-4 py-3 rounded-lg
+    <div onClick={() => setAdminActiveTab("category")} className="w-full flex items-center gap-3 px-4 py-3 rounded-lg
                     text-gray-600 font-medium
                     hover:bg-gray-100 hover:text-gray-900
                     cursor-pointer transition">

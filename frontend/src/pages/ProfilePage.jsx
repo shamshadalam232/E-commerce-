@@ -26,7 +26,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-    {userData.role === 'user' ? (
+    {user?.role === "user" ? (
 
       <div className='flex p-5'>
         <div><ProfileOneSide activeTab={activeTab} setActiveTab={setActiveTab} /></div>

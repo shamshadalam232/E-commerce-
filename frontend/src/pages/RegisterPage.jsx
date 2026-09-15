@@ -3,6 +3,7 @@ import loginPage from '../assets/loginPage.png'
 import { Handbag } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import api from '../api/Axios'
+import toast from 'react-hot-toast'
 
 export default function RegisterPage() {
 
