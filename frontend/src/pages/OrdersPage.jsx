@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import api from '../api/Axios'
 
-export default function OrdersPage() {
+export default function OrdersPage({user, setUser}) {
+
+  // const [profile, setProfile] = useState(null)
+
+  // const profileData = async () => {
+  //   const getProfile = await api.get('/users/me')
+  // }
+
+  // useEffect(() => {
+  //   profileData()
+  // }, [])
+
+  // console.log(user)
+
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
     
@@ -74,6 +88,12 @@ export default function OrdersPage() {
           </p>
         </div>
     
+        <div className="flex py-3">
+          <p className="w-24 text-gray-500 font-medium">role</p>
+          <p className="text-gray-800">
+            user
+          </p>
+        </div>
     
         {/* Button */}
         <button className="mt-5 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium transition">

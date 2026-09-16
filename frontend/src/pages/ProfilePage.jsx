@@ -30,7 +30,7 @@ export default function ProfilePage() {
 
       <div className='flex p-5'>
         <div><ProfileOneSide activeTab={activeTab} setActiveTab={setActiveTab} /></div>
-        <div><ProfileSecondSide activeTab={activeTab} /></div>
+        <div><ProfileSecondSide activeTab={activeTab} user={user}  setUser={setUser}/></div>
      </div>
 
     ) : (

@@ -12,7 +12,7 @@ const register = async (req, res) => {
   })
 
   if(check){
-    res.status(200).json({message:'you allready created Account'})
+    return res.status(200).json({message:'you allready created Account'})
   }
 
   if(!password){
