@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import api from '../api/Axios'
+import userCreateContext from '../context/CartContext'
+import EditProfileModal from '../components/EditProfileModal'
 
-export default function OrdersPage({user, setUser}) {
+export default function OrdersPage() {
 
-  // const [profile, setProfile] = useState(null)
+  const {user, setUser} = useContext(userCreateContext)
 
-  // const profileData = async () => {
-  //   const getProfile = await api.get('/users/me')
-  // }
+  const [open, setOpen] = useState(false)
 
-  // useEffect(() => {
-  //   profileData()
-  // }, [])
 
-  // console.log(user)
+  console.log(user)
+
+  const openModal = () => {
+    setOpen(true)
+  }
+
+  console.log(open)
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
@@ -67,7 +70,7 @@ export default function OrdersPage({user, setUser}) {
         {/* Name */}
         <div className="flex py-3 border-b border-gray-100">
           <p className="w-24 text-gray-500 font-medium">Name</p>
-          <p className="text-gray-800">Shamshad Alam</p>
+          <p className="text-gray-800">{user?.name}</p>
         </div>
     
     
@@ -75,7 +78,7 @@ export default function OrdersPage({user, setUser}) {
         <div className="flex py-3 border-b border-gray-100">
           <p className="w-24 text-gray-500 font-medium">Email</p>
           <p className="text-gray-800">
-            shamshadalam10313@gmail.com
+            {user?.email}
           </p>
         </div>
     
@@ -84,21 +87,23 @@ export default function OrdersPage({user, setUser}) {
         <div className="flex py-3">
           <p className="w-24 text-gray-500 font-medium">Phone</p>
           <p className="text-gray-800">
-            9142225735
+            {user?.phone}
           </p>
         </div>
     
         <div className="flex py-3">
           <p className="w-24 text-gray-500 font-medium">role</p>
           <p className="text-gray-800">
-            user
+           {user?.role}
           </p>
         </div>
     
         {/* Button */}
-        <button className="mt-5 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium transition">
-          Edit Profile
+        <button onClick={openModal} className="mt-5 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium transition">
+          Edit
         </button>
+
+        {open && <EditProfileModal setOpen={setOpen} open={open} />}
     
       </div>
     </div>
