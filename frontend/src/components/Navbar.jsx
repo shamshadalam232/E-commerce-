@@ -1,5 +1,5 @@
 
-import { Search, User, LogOut, Package, CircleHelp } from 'lucide-react'
+import { Search, User, LogOut, Package, CircleHelp, List, X } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import api from '../api/Axios'
 import LOGO from '../assets/logo3.png'
@@ -8,6 +8,14 @@ import { useNavigate } from 'react-router-dom'
 export default function Navbar() {
 
   const [useData, setUserData] = useState(null)
+
+  const [ isMenuOpen, setIsMenuOpen] = useState(false)
+
+  console.log(isMenuOpen)
+
+  const humburgerButtonOnclick = () => {
+    setIsMenuOpen(prev => !prev)
+  }
 
   const navigation = useNavigate()
 
@@ -41,6 +49,7 @@ export default function Navbar() {
   }, [])
 
   return (
+    
     <header className="w-full bg-white shadow-sm border-b border-gray-200">
 
       {!useData ? (
@@ -49,7 +58,7 @@ export default function Navbar() {
         // GUEST NAVBAR
         // =========================
 
-        <nav className="h-20 max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <nav className="flex flex-wrap  md:h-20 max-w-7xl mx-auto md:px-6 px-4 items-center justify-between">
 
           {/* LOGO */}
           <div
@@ -59,28 +68,38 @@ export default function Navbar() {
             <img
               src={LOGO}
               alt="Logo"
-              className="w-32 h-auto object-contain"
+              className="w-24 md:w-32 h-auto object-contain"
             />
           </div>
 
-          {/* RIGHT SIDE */}
-          <div className="flex items-center gap-8 text-sm font-medium text-gray-700">
+          <div  className='md:hidden'>
+            <button  className=' p-2 rounded-lg hover:bg-gray-100' onClick={humburgerButtonOnclick}>
+              {isMenuOpen ? <X size={24} /> : <List />}
+            </button>
+          </div>
 
-            <div className="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition">
+          {/* RIGHT SIDE */}
+          <div className=
+           {` ${isMenuOpen ? "flex" : "hidden"}
+             items-start
+               flex-col
+                 md:flex md:flex-row md:items-center md:p-0 gap-1 p-3 md:gap-8 text-sm font-medium text-gray-700  w-full md:w-auto md:ml-auto pt-4 border-t border-gray-300 md:border-0  md:mt-0  md:pt-0 ` } >
+
+            <div className="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition  w-full px-3 py-3 rounded-lg hover:bg-gray-50 md:w-auto font-medium">
               <CircleHelp size={18} />
               <span>Help & Support</span>
             </div>
 
             <button
               onClick={() => navigation('/login')}
-              className="hover:text-blue-600 transition"
+              className="hover:text-blue-600 transition w-full px-3 py-3 text-left rounded-lg hover:bg-gray-50 md:w-auto md:px-0 md:py-0"
             >
               Login
             </button>
 
             <button
               onClick={() => navigation('/register')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg transition w-full md:w-auto"
             >
               Register
             </button>
@@ -259,6 +278,7 @@ export default function Navbar() {
       )}
 
     </header>
+
   )
 }
 
