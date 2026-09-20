@@ -12,10 +12,10 @@ export default function HomeKa() {
   const [current, setCurrent] = useState(0)
 
   return (
-    <div className='bg-amber-100 m-3 relative flex items-center justify-between rounded-2xl h-100'>
+    <div className='bg-amber-100 m-3 relative flex flex-col md:flex-row items-center justify-between rounded-2xl min-h-[500px]  md:h-[400px] py-8  md:py-0'>
 
       {/* Left Content */}
-      <div className='ml-18'>
+      <div className='w-full md:w-1/2 px-6 md:pl-12 lg:pl-18 text-center md:text-left'>
         <h1 className='text-blue-700 mb-3'>
           SUMMER SALE
         </h1>
@@ -39,7 +39,7 @@ export default function HomeKa() {
 
 
       {/* Image + Buttons */}
-      <div className='relative w-100 h-full flex items-center mr-10'>
+      <div className='relative w-full md:w-1/2 h-64 md:h-full flex items-center justify-center mt-16 md:mt-0 md:mr-10 px-6 md:px-0'>
 
         <img
           src={image[current]}

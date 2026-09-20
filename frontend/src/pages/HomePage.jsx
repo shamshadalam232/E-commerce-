@@ -15,9 +15,7 @@ export default function HomePage() {
       <div >
         <ProductFilter />
       </div>
-      <div></div>
-      <div></div>
-      <div></div>
+      
     </>
     
   )

@@ -14,13 +14,7 @@ export default function ProductCard() {
     <p className='font-medium text-gray-700'>Laptops</p>
   </div>
 
-  {/* Volleyball */}
-  <div className='group bg-gray-200 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer transition duration-300 hover:-translate-y-1 hover:shadow-md'>
-    <div className='bg-white rounded-full p-3 mb-2 transition duration-300 group-hover:scale-110'>
-      <Volleyball size={48} color="#361259" />
-    </div>
-    <p className='font-medium text-gray-700'>Volleyball</p>
-  </div>
+  
 
   {/* Watch */}
   <div className='group bg-sky-200 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer transition duration-300 hover:-translate-y-1 hover:shadow-md'>
