@@ -28,14 +28,14 @@ export default function ProfilePage() {
     <div>
     {user?.role === "user" ? (
 
-      <div className='flex p-5'>
+      <div className='flex flex-col lg:flex-row p-3 md:p-5 gap-4'>
         <div><ProfileOneSide activeTab={activeTab} setActiveTab={setActiveTab} /></div>
         <div><ProfileSecondSide activeTab={activeTab} user={user}  setUser={setUser}/></div>
      </div>
 
     ) : (
 
-      <div className='flex p-5'>
+      <div className='flex flex-col lg:flex-row p-3 md:p-5 gap-4'>
         <div><AdminProfileOneSide adminActiveTab={adminActiveTab} setAdminActiveTab={setAdminActiveTab} /></div>
         <div><AdminSecondSide adminActiveTab={adminActiveTab} /></div>
       </div>

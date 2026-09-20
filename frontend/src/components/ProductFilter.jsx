@@ -13,17 +13,6 @@ export default function ProductFilter() {
     setProduct(job.data.getProduct)
   }
 
-  // console.log(product.getProduct.price)
-
-  // const price = product.price
-
-  // console.log(price)
-
-  // let x 
-  // console.log(x)
-
-
-
   useEffect(() => {
     fetchJob()
   },[])
@@ -42,15 +31,15 @@ export default function ProductFilter() {
 
 
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
      
     
        { product.map((product) => (
-  <div key={product._id} className="w-full max-w-sm mx-auto rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+  <div key={product._id} className="w-full  rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
 
    
      {/* Product Image */}
-    <div className="relative bg-gray-50 p-4 sm:p-6 flex justify-center">
+    <div className="relative bg-gray-50 md:p-4 sm:p-6 flex justify-center">
 
       {/* Discount Badge */}
       <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
@@ -65,19 +54,19 @@ export default function ProductFilter() {
       <img
         src={Iphone}
         alt="iPhone 14"
-        className="w-36 sm:w-48 h-44 sm:h-52 object-contain hover:scale-105 transition duration-300"
+        className="w-24 sm:w-36 h-28 sm:h-40 md:h-52 object-contain hover:scale-105 transition duration-300"
       />
     </div>
 
     {/* Product Information */}
-    <div className="p-4">
+    <div className="p-2.5 md:p-4">
 
       {/* Name + Brand */}
-      <h1 className="text-lg sm:text-xl font-bold text-gray-900">
+      <h1 className="text-sm md:text-xl line-clamp-2 sm:text-xl font-bold text-gray-900">
         {product?.name}
       </h1>
 
-      <p className="text-sm text-gray-500 mt-1">
+      <p className="text-sm text-gray-500 mt-1 hidden md:block">
         Apple
       </p>
 
@@ -98,7 +87,7 @@ export default function ProductFilter() {
 
       {/* Price */}
       <div className="flex items-center gap-3 mt-3">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+        <h1 className="text-lg md:text-2xl sm:text-3xl font-bold text-gray-900">
           $599
         </h1>
 
@@ -108,14 +97,14 @@ export default function ProductFilter() {
       </div>
 
       {/* Savings */}
-      <p className="text-xs text-green-600 font-semibold mt-1">
+      <p className="hidden md:block text-xs text-green-600 font-semibold mt-1">
         Save $100
       </p>
 
       {/* Specifications */}
       <div className="mt-4 space-y-2">
 
-        <div className="flex items-center gap-2 text-sm text-gray-600">
+        <div className="flex items-start gap-1.5 text-sm text-gray-600">
           <Package2
             size={16}
             color="#4339c6"
@@ -124,7 +113,7 @@ export default function ProductFilter() {
           <span>256GB Storage | 12GB RAM</span>
         </div>
 
-        <div className="flex items-center gap-2 text-sm text-gray-600">
+        <div div className="flex items-start gap-1.5 text-sm text-gray-600">
           <Smartphone
             size={16}
             color="#4339c6"
@@ -133,7 +122,7 @@ export default function ProductFilter() {
           <span>6.2" AMOLED Display</span>
         </div>
 
-        <div className="flex items-center gap-2 text-sm text-gray-600">
+        <div div className="flex items-start gap-1.5 text-sm text-gray-600">
           <Camera
             size={16}
             color="#4339c6"
@@ -157,7 +146,7 @@ export default function ProductFilter() {
       <button
         className="mt-4 w-full flex items-center justify-center gap-2 
         border-2 border-blue-800 text-blue-800 
-        rounded-xl py-2.5 font-semibold
+        rounded-xl py-2 md:py-2.5 font-semibold
         hover:bg-blue-800 hover:text-white
         active:scale-95 transition-all duration-200"
       >
@@ -171,7 +160,7 @@ export default function ProductFilter() {
       {/* Buy Now */}
       <button
         className="mt-2 w-full bg-blue-800 text-white 
-        rounded-xl py-2.5 font-semibold
+        rounded-xl py-2 md:py-2.5 font-semibold
         hover:bg-blue-900
         active:scale-95 transition-all duration-200"
       >

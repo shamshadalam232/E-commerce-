@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Heart, CreditCard, LogOut, LayoutDashboard, SquareChartGantt, Logs, Users, ListSortAscending, Star} from "lucide-react";
 
 
 export default function AdminProfileOneSide({adminActiveTab, setAdminActiveTab}) {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const OnClickHum = () => {
+    setIsOpen(prev => !prev)
+  }
+
   return (
-   <div className="w-64 border-r border-gray-200 pr-6">
+   <div className=" w-full lg:w-64 border-r lg:border-r border-gray-200 pr-0 lg:pr-6">
+
+       {/* MOBILE BUTTON */}
+
+       
+    <button onClick={OnClickHum}
+    className='lg:hidden  w-full  flex items-center justify-between px-4 py-3 bg-blue-50 text-blue-600  rounded-lg font-semibold mb-3'
+    >
+      <span>Admin Menu</span>
+      <span>{isOpen ? "X" : "☰"}</span>
+    </button>
 
   <div className="space-y-2">
 
