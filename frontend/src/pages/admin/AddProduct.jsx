@@ -94,7 +94,7 @@ const handleOnSubmit = async (e) => {
 
   return (
     
-<div className="min-h-screen bg-gray-50 p-6">
+<div className="min-h-screen bg-gray-50 p-3 md:p-6">
 
   {/* Header */}
   <div className="mb-8">
@@ -106,7 +106,7 @@ const handleOnSubmit = async (e) => {
     </p>
   </div>
 
-  <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 max-w-6xl">
+  <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 md:p-6 max-w-6xl  w-full">
    <form onSubmit={handleOnSubmit}>
     {/* Basic Information */}
     <div className="mb-8">

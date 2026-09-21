@@ -36,13 +36,13 @@ export default function LOginPage() {
   
   return (
     <>
-     <div className='flex w-full min-h-screen'>
-      <div className='rounded-r-2xl w-full min-h-screen flex justify-center bg-linear-to-r from-gray-100 via-orange-300 to-gray-500'>
+     <div className='flex flex-col md:flex-row w-full min-h-screen'>
+      <div className='rounded-r-2xl w-full h-64 md:min-h-screen md:h-auto flex justify-center bg-linear-to-r from-gray-100 via-orange-300 to-gray-500'>
         <img className='object-cover p-3' src={loginPage} />
       </div>
-      <div className="rounded-2xl w-full min-h-screen relative">
+      <div className="rounded-2xl w-full min-h-100 md:min-h-screen relative">
 
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2">
+  <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-1/2"> 
 
     <div className="flex flex-col items-center">
       

@@ -18,10 +18,10 @@ export default function Category() {
 
   return (
    
-<div className="min-h-screen w-full min-w-0 bg-gray-50 p-6">
+<div className="min-h-screen w-full min-w-0 bg-gray-50 p-3 md:p-6">
 
   {/* Header */}
-  <div className="flex items-center justify-between mb-6">
+  <div className="flex flex-col  sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
     <div>
       <p className="text-2xl font-bold">Categories</p>
       <p className="text-gray-400">
@@ -36,7 +36,7 @@ export default function Category() {
 
 
   {/* Search + Filter */}
-  <div className="flex items-center justify-between gap-10 mb-6">
+  <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-10 mb-6">
 
     <div className="flex-1">
       <input
@@ -61,37 +61,37 @@ export default function Category() {
 
       <thead>
         <tr className="bg-gray-200 text-sm text-gray-700">
-          <th className="p-3 text-left">#</th>
-          <th className="p-3 text-left">Images</th>
-          <th className="p-3 text-left">Category Name</th>
-          <th className="p-3 text-left">Description</th>
-          <th className="p-3 text-left">Products</th>
-          <th className="p-3 text-left">Action</th>
+          <th className="p-2 md:p-3 text-left">#</th>
+          <th className="p-2 md:p-3 text-left">Images</th>
+          <th className="p-2 md:p-3 text-left">Category Name</th>
+          <th className="hidden md:table-cell p-2 md:p-3 text-left">Description</th>
+          <th className="p-2 md:p-3 text-left">Products</th>
+          <th className="p-2 md:p-3 text-left">Action</th>
         </tr>
       </thead>
 
       <tbody>
          {category.map((cat) => {
           return <tr className="bg-white border-b">
-          <td className="p-3">1</td>
+          <td className="p-2 md:p-3">1</td>
 
-          <td className="p-3">
+          <td className="p-2 md:p-3">
             image
           </td>
 
-          <td className="p-3">
+          <td className="p-2 md:p-3">
             {cat.name}
           </td>
 
-          <td className="p-3">
+          <td className="p-2 md:p-3 hidden md:table-cell">
             Clothing and Accessories for men
           </td>
 
-          <td className="p-3">
+          <td className="p-2 md:p-3">
             125
           </td>
 
-          <td className="p-3">
+          <td className="p-2 md:p-3">
             <button className="mr-3">
               <Pencil size={18} />
             </button>

@@ -7,7 +7,7 @@ import AddCategory from './AddCategory'
 
 export default function AdminSecondSide({adminActiveTab}) {
   return (
-    <div>
+    <div  className='w-full lg:flex-1 min-w-0'>
         {adminActiveTab === "dashBoard" && <DashBoard /> }
 
         {adminActiveTab === "createProduct" && <AddProduct />}

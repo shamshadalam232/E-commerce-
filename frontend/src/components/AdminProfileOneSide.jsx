@@ -23,17 +23,21 @@ export default function AdminProfileOneSide({adminActiveTab, setAdminActiveTab})
       <span>{isOpen ? "X" : "☰"}</span>
     </button>
 
-  <div className="space-y-2">
+  <div className={`${isOpen ? "block"  : "hidden"} lg:block space-y-2`}>
 
     {/* My Orders */}
-    <div onClick={() => setAdminActiveTab("dashBoard")} className="flex items-center gap-3 px-4 py-3 rounded-lg
+    <div onClick={() => {
+       setAdminActiveTab("dashBoard")
+      setIsOpen(false)}
+    } className="flex items-center gap-3 px-4 py-3 rounded-lg
                     bg-blue-50 text-blue-600 font-semibold cursor-pointer">
       <LayoutDashboard size={20} />
       <span>Dashboard</span>
     </div>
 
     {/* Wishlist */}
-    <div onClick={() => setAdminActiveTab("createProduct")} className="flex items-center gap-3 px-4 py-3 rounded-lg
+    <div onClick={() => {setAdminActiveTab("createProduct")
+     setIsOpen(false)}} className="flex items-center gap-3 px-4 py-3 rounded-lg
                     text-gray-600 font-medium
                     hover:bg-gray-100 hover:text-gray-900
                     cursor-pointer transition">
@@ -42,7 +46,9 @@ export default function AdminProfileOneSide({adminActiveTab, setAdminActiveTab})
     </div>
 
     {/* Wishlist */}
-    <div onClick={() => setAdminActiveTab("createProduct")} className="flex items-center gap-3 px-4 py-3 rounded-lg
+    <div onClick={() => {setAdminActiveTab("createProduct")
+      setIsOpen(false)}
+    } className="flex items-center gap-3 px-4 py-3 rounded-lg
                     text-gray-600 font-medium
                     hover:bg-gray-100 hover:text-gray-900
                     cursor-pointer transition">
@@ -52,7 +58,9 @@ export default function AdminProfileOneSide({adminActiveTab, setAdminActiveTab})
 
 
     {/* Wishlist */}
-    <div onClick={() => setAdminActiveTab("createProduct")} className="flex items-center gap-3 px-4 py-3 rounded-lg
+    <div onClick={() => {setAdminActiveTab("createProduct")
+      setIsOpen(false)}
+    } className="flex items-center gap-3 px-4 py-3 rounded-lg
                     text-gray-600 font-medium
                     hover:bg-gray-100 hover:text-gray-900
                     cursor-pointer transition">
@@ -63,7 +71,9 @@ export default function AdminProfileOneSide({adminActiveTab, setAdminActiveTab})
 
 
     {/* Category */}
-    <div onClick={() => setAdminActiveTab("category")} className="w-full flex items-center gap-3 px-4 py-3 rounded-lg
+    <div onClick={() => {setAdminActiveTab("category")
+      setIsOpen(false)}
+    } className="w-full flex items-center gap-3 px-4 py-3 rounded-lg
                     text-gray-600 font-medium
                     hover:bg-gray-100 hover:text-gray-900
                     cursor-pointer transition">
@@ -74,7 +84,9 @@ export default function AdminProfileOneSide({adminActiveTab, setAdminActiveTab})
 
 
     {/* Wishlist */}
-    <div onClick={() => setAdminActiveTab("createProduct")} className="flex items-center gap-3 px-4 py-3 rounded-lg
+    <div onClick={() => {setAdminActiveTab("createProduct")
+      setIsOpen(false)}
+    } className="flex items-center gap-3 px-4 py-3 rounded-lg
                     text-gray-600 font-medium
                     hover:bg-gray-100 hover:text-gray-900
                     cursor-pointer transition">

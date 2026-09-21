@@ -4,7 +4,7 @@ import React from 'react'
 export default function DashBoard() {
   return (
     
-<div className="min-h-screen bg-gray-50 p-6">
+<div className="min-h-screen bg-gray-50 p-3 md:p-6">
 
 <div>
   <p className='text-2xl font-bold'>Dashboard</p>
@@ -48,7 +48,7 @@ export default function DashBoard() {
 </div>
 
 <div className='bg-white shadow'>
-  <div className='flex justify-between items-center p-3  border-b-2'>
+  <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 p-3  border-b-2'>
     <div >
     <p className='font-bold'>Recent Orders</p>
     <p className='text-gray-500'>Latest customer orders</p>
@@ -59,7 +59,7 @@ export default function DashBoard() {
     </div>
   </div>
 
-
+  <div className='overflow-x-auto'>
   <table className="w-full shadow">
   <thead>
     <tr className="bg-gray-200 text-sm text-gray-700">
@@ -79,6 +79,7 @@ export default function DashBoard() {
     </tr>
   </tbody>
 </table>
+</div>
 </div>
 
 </div>
