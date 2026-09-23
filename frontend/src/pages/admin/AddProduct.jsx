@@ -65,15 +65,30 @@ console.log(product)
 const handleOnSubmit = async (e) => {
    e.preventDefault()
 
-   const productData = {
-    ...product,
-    features: product.features
+   const formData = new FormData()
+
+   formData.append("name", product.name)
+   formData.append("description", product.description)
+   formData.append("price", product.price)
+   formData.append("discountPrice", product.discountPrice)
+   formData.append("images", product.images)
+   formData.append("category", product.category)
+   formData.append("brand", product.brand)
+   formData.append("stock", product.stock)
+   formData.append("rating", product.rating)
+   formData.append("numReviews", product.numReviews)
+
+   const features = product.features
     .split(',')
     .map(feature => feature.trim())
     .filter(feature => feature !== '')
-   }
+   
+   formData.append("features", JSON.stringify(features))
 
-   const onsubmit = await api.post('/users/products',productData)
+   formData.append("isActive", product.isActive)
+  
+
+   const onsubmit = await api.post('/users/products',formData)
    toast.success('your product craeted successfully')
    setProduct({
     name : "",

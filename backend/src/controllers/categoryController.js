@@ -30,4 +30,14 @@ const getCategoryById = async (req, res) => {
     
 }
 
-module.exports = {createCategory, getCategoryFunction, getCategoryById}
+const getCategoryDelelte  = async (req, res) => {
+
+    const getCategory_Id = req.params.id
+
+    const getCategorydeletethis = await categoryModel.findByIdAndDelete(getCategory_Id)
+
+    return res.status(201).json({message:"your category deleted"})
+    
+}
+
+module.exports = {createCategory, getCategoryFunction, getCategoryById, getCategoryDelelte}

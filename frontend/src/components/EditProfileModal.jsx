@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import api from '../api/Axios'
 
-export default function EditProfileModal() {
+export default function EditProfileModal({setOpen, open}) {
 
   const [updateProfile, setUpdateProfile] = useState({})
 
@@ -28,7 +28,7 @@ export default function EditProfileModal() {
       <p className='text-sm text-gray-500'>Update user information</p>
     </div>
     <div>
-      <p>x</p>
+      <p onClick={() => setOpen(false)}>x</p>
     </div>
   </div>
 

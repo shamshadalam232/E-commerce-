@@ -1,8 +1,11 @@
 import { Pencil, Trash } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import api from '../api/Axios'
+import AddCategory from '../pages/admin/AddCategory'
 
 export default function Category() {
+
+  const [open, setOpen] = useState(false)
 
   const [category, setCategory] = useState([])
 
@@ -15,6 +18,14 @@ export default function Category() {
   useEffect(() => {
     data()
   }, [])
+
+  const onClickdelete = async (id) => {
+    const res = await api.delete(`/users/category/${id}`)
+
+    setCategory(prev => 
+      prev.filter(item => item._id !== id)
+    )
+  }
 
   return (
    
@@ -29,9 +40,11 @@ export default function Category() {
       </p>
     </div>
 
-    <button className="bg-black text-white px-4 py-2 rounded-lg">
+    <button onClick={() => setOpen(true)} className="bg-black text-white px-4 py-2 rounded-lg">
       Add Categories
     </button>
+
+    {open && <AddCategory setOpen={setOpen} open={open} />}
   </div>
 
 
@@ -72,7 +85,7 @@ export default function Category() {
 
       <tbody>
          {category.map((cat) => {
-          return <tr className="bg-white border-b">
+          return <tr className="bg-white border-b" key={cat._id}>
           <td className="p-2 md:p-3">1</td>
 
           <td className="p-2 md:p-3">
@@ -96,7 +109,7 @@ export default function Category() {
               <Pencil size={18} />
             </button>
 
-            <button className=''>
+            <button className='' onClick={() => onClickdelete(cat._id)} >
               <Trash size={18} color="#f00505" />
             </button>
           </td>

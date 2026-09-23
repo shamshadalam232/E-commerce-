@@ -3,7 +3,8 @@ const productModel = require("../models/productionModel")
 const createProduct = async(req, res) => {
 
     console.log("REQ BODY:", req.body)
-
+    console.log("REQ FILE", req.file)
+    const imageUrl = req.file.path
     const {name, description, price, discountPrice, images, category, brand, stock, rating, numReviews, features} = req.body
 
     const createProduct1 = await productModel.create({
@@ -11,7 +12,7 @@ const createProduct = async(req, res) => {
         description,
         price,
         discountPrice,
-        images,
+        images:imageUrl,
         category,
         brand,
         stock,
@@ -42,6 +43,15 @@ const getSingleProduct = async (req, res) => {
     
 }
 
+const deleteSingleProduct = async (req, res) => {
+
+    const singleProduct = req.params.id
+
+    const deleteProduct = await productModel.findByIdAndDelete(singleProduct)
+
+    return res.status(200).json({message: 'your data deleted'})
+}
 
 
-module.exports = { createProduct, getProductData, getSingleProduct }
+
+module.exports = { createProduct, getProductData, getSingleProduct, deleteSingleProduct }

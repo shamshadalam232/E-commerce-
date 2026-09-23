@@ -52,7 +52,7 @@ export default function ProductFilter() {
       </button>
 
       <img
-        src={Iphone}
+        src={product?.images}
         alt="iPhone 14"
         className="w-24 sm:w-36 h-28 sm:h-40 md:h-52 object-contain hover:scale-105 transition duration-300"
       />
