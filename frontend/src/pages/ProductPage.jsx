@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function ProductPage() {
+export default function ProductPage({setIsOpen}) {
 
     const [product, setProduct] = useState({
         name: "",
@@ -112,9 +112,12 @@ export default function ProductPage() {
         <form onSubmit={handleOnSubmit}>
           {/* Basic Information */}
           <div className="mb-8">
+            <div className='flex justify-between'>
             <h2 className="text-xl font-semibold text-gray-800 mb-5">
               Basic Information
             </h2>
+            <p className='font-bold text-2xl pr-2  cursor-pointer ' onClick={() => setIsOpen(false)}>X</p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
@@ -390,3 +393,4 @@ export default function ProductPage() {
     </div>
   )
 }
+ 
