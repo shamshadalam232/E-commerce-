@@ -43,6 +43,15 @@ const getSingleProduct = async (req, res) => {
     
 }
 
+const editProductSingle = async (req, res) => {
+
+    const singleProduct = req.params.id
+
+    const edit = await productModel.findByIdAndUpdate(singleProduct, req.body, {new : true})
+
+    return res.status(200).json({message: "your product is updated", edit})
+}
+
 const deleteSingleProduct = async (req, res) => {
 
     const singleProduct = req.params.id
@@ -54,4 +63,4 @@ const deleteSingleProduct = async (req, res) => {
 
 
 
-module.exports = { createProduct, getProductData, getSingleProduct, deleteSingleProduct }
+module.exports = { createProduct, getProductData, getSingleProduct, deleteSingleProduct, editProductSingle }

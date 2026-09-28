@@ -10,4 +10,5 @@ category.get('/category', authMiddleware, getCategoryFunction)
 category.get('/category/:id', authMiddleware, getCategoryById)
 category.delete('/category/:id', getCategoryDelelte)
 
+
 module.exports = category
